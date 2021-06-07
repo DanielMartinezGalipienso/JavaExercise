@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>All players score</title>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+	</head>
+	<body>
+		<!-- Nav -->
+		<div class="w3-top">
+			<div class="w3-row w3-large w3-light-grey">
+				<div class="w3-col s2">
+					<a href="/player/show/all" class="w3-button w3-block">Players</a>
+				</div>
+				<div class="w3-col s2">
+					<a href="/player/show/scores" class="w3-button w3-block">Scores</a>
+				</div>
+				<div class="w3-col s2">
+					<a href="/song/show/all" class="w3-button w3-block">Songs</a>
+				</div>
+				<div class="w3-col s3">
+					<a href="/extra/restore" class="w3-button w3-block">Restore DB</a>
+				</div>
+			</div>
+		</div>
+		<!-- Body -->
+		<div class="w3-responsive">
+			<div>
+				<h1>Players</h1>
+			</div>
+			<div class="column">
+				<div th:each="player:${player}">
+					<p>Player <span th:text="${player.name}"></span></p>
+					<table class="w3-table-all w3-hovertable">
+						<thead>
+							<tr class="w3-light-grey">
+								<th>Name song</th>
+								<th>Times played</th>
+								<th>Easy</th>
+								<th>Normal</th>
+								<th>Hard</th>
+								<th>Extreme</th>
+								<th> <a th:href="@{/player/show(id=${player.id})}" class="btn btn-primary"><img th:src="@{/img/show.png}" th:alt="Show_player_+${player.name}"></a></th>
+								<th> <a th:href="@{/player/update(id=${player.id})}" class="btn btn-primary"><img th:src="@{/img/edit.png}" th:alt="Update_player+${player.name}"></a></th>
+								<th> <a th:href="@{/player/updatescore(id=${player.id})}" class="btn btn-primary"><img th:src="@{/img/add.png}" th:alt="Add_score_player+${player.name}"></a></th>
+								<th> <a th:href="@{/player/delete(id=${player.id})}" class="btn btn-primary"><img th:src="@{/img/delete.png}" th:alt ="Delete_player_+${player.name}"></a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="score:${player.scores}">
+								<td th:text="${score.nameSong}"></td>
+								<td th:text="${score.timesPlayed}"></td>
+								<td th:text="${score.scoreForDifficultyA}"></td>
+								<td th:text="${score.scoreForDifficultyB}"></td>
+								<td th:text="${score.scoreForDifficultyC}"></td>
+								<td th:text="${score.scoreForDifficultyD}"></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								
+								
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+	<footer>
+	
+	</footer>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>All players</title>
+		<link rel="stylesheet" th:href="@{/css/w3.css}" type="text/css" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+	</head>
+	<body>
+		<!-- Nav -->
+		<div class="w3-top">
+			<div class="w3-row w3-large w3-light-grey">
+				<div class="w3-col s2">
+					<a href="/player/show/all" class="w3-button w3-block">Players</a>
+				</div>
+				<div class="w3-col s2">
+					<a href="/player/show/scores" class="w3-button w3-block">Scores</a>
+				</div>
+				<div class="w3-col s2">
+					<a href="/song/show/all" class="w3-button w3-block">Songs</a>
+				</div>
+				<div class="w3-col s3">
+					<a href="/extra/restore" class="w3-button w3-block">Restore DB</a>
+				</div>
+			</div>
+		</div>
+		<!-- Body -->
+		<div class="w3-responsive">
+			<div>
+				<h1>Players</h1>
+				<p><a th:href="@{/player/add}">Add a new player</a></p>
+			</div>
+			<div class="column">
+				<table class="w3-table-all w3-hovertable">
+					<thead>
+						<tr class="w3-light-grey">
+							<th>name</th>
+							<th>email</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="player:${player}">
+							<td th:text="${player.name}"></td>
+							<td th:text="${player.email}"></td>
+							
+							<td> <a th:href="@{/player/show(id=${player.id})}" class="btn btn-primary"><img th:src="@{/img/show.png}" th:alt="Show_player_+${player.name}"></a></td>
+							<td> <a th:href="@{/player/update(id=${player.id})}" class="btn btn-primary"><img th:src="@{/img/edit.png}" th:alt="Update_player+${player.name}"></a></td>
+							<td> <a th:href="@{/player/updatescore(id=${player.id})}" class="btn btn-primary"><img th:src="@{/img/add.png}" th:alt="Add_score_player+${player.name}"></a></td>
+							<td> <a th:href="@{/player/delete(id=${player.id})}" class="btn btn-primary"><img th:src="@{/img/delete.png}" th:alt ="Delete_player_+${player.name}"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+	<footer>
+	
+	</footer>
+</html>
